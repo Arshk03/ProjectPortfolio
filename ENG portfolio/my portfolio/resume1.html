@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Resume</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.14.305/build/pdf.min.js"></script>
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Arsh Khan</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="aboutme1.html">About me</a></li>
+											<li><a href="reflection1.html">Reflection</a></li>
+											<li><a href="resume1.html">Resume</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<article id="main">
+						<header>
+							<h2>	<a href="files/resume.pdf" >My Resume</a></h2>
+							<p>Click "My Resume" to open and download my resume</p>
+						</header>
+						<section class="wrapper style5">
+							<div class="inner">
+								<canvas id = "my_canvas"> </canvas>
+								<script>
+									var loadingTask = pdfjsLib.getDocument('resume.pdf');
+							loadingTask.promise.then(function(pdf) {
+								pdf.getPage(1).then(function(page) {
+									var scale = 1.5;
+									var viewport = page.getViewport({ scale: scale, });
+									// Support HiDPI-screens.
+									var outputScale = window.devicePixelRatio || 1;
+							
+									var canvas = document.getElementById('my_canvas');
+									var context = canvas.getContext('2d');
+							
+									canvas.width = Math.floor(viewport.width * outputScale);
+									canvas.height = Math.floor(viewport.height * outputScale);
+									canvas.style.width = Math.floor(viewport.width) + "px";
+									canvas.style.height =  Math.floor(viewport.height) + "px";
+							
+									var transform = outputScale !== 1
+									  ? [outputScale, 0, 0, outputScale, 0, 0]
+									  : null;
+							
+									var renderContext = {
+									  canvasContext: context,
+									  transform: transform,
+									  viewport: viewport
+									};
+									page.render(renderContext);
+								});
+							});
+							 </script>
+								
+								
+								<h2> *RENDERED PDF HERE*</h2>
+
+								
+
+							</div>
+						</section>
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						
+						
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
